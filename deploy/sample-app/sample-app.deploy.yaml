@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: sample-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+      annotations:
+        # based on your Prometheus config above, this tells prometheus
+        # to scrape this pod for metrics on port 8080 at "/metrics"
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - image: luxas/autoscale-demo
+        name: metrics-provider
+      ports:
+      - name: http
+        containerPort: 8080
