@@ -19,7 +19,7 @@ spec:
         prometheus.io/path: "/metrics"
     spec:
       containers:
-      - image: luxas/autoscale-demo
+      - image: luxas/autoscale-demo:v0.1.2
         name: metrics-provider
       ports:
       - name: http
