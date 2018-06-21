@@ -3,3 +3,6 @@
 vendor
 _output
 .idea
+deploy/manifests/cm-adapter-serving-certs.yaml
+apiserver.local.config/
+kubeconfig
