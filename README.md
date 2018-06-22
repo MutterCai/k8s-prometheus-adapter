@@ -41,7 +41,7 @@ Kubernetes Custom Metrics Adapter for Prometheus
     * 创建一个[部署sample-app](./deploy/sample-app/sample-app.deploy.yaml)，并公开端口用于接收请求，提升metrics  
         ```kubectl create -f sample-app.deploy.yaml```
         ```kubectl create service clusterip sample-app --tcp=80:8080```
-    * demo提供了一些关于接收http请求的数量metrics，http_requests_totle，查询
+    * demo提供了一些关于接收http请求的数量metrics，http_requests_totle，查询  
         ```kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/*/http_requests?selector=app%3Dsample-app"```
     * 增加请求
         ```curl http://$(kubectl get service sample-app -o jsonpath='{ .spec.clusterIP }')/metrics```
