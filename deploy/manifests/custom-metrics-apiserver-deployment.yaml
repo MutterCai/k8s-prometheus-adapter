@@ -19,7 +19,7 @@ spec:
       serviceAccountName: custom-metrics-apiserver
       containers:
       - name: custom-metrics-apiserver
-        image: muttercai/k8s-prometheus-adapter:v1.0
+        image: muttercai/k8s-prometheus-adapter:v1.4
         args:
         - /adapter
         - --secure-port=6443
@@ -29,7 +29,7 @@ spec:
         - --prometheus-url=http://prometheus.monitoring.svc:9090/
         - --metrics-relist-interval=30s
         - --rate-interval=5m
-        - --v=10
+        - --v=0
         ports:
         - containerPort: 6443
         volumeMounts:

@@ -355,11 +355,11 @@ func (n *metricNamer) metricNameFromSeries(series prom.Series) (name string, kin
 	name = series.Name
 	if strings.HasSuffix(name, "_total") {
 		kind = CounterSeries
-		name = name[:len(name)-6]
+		//name = name[:len(name)-6]
 
 		if strings.HasSuffix(name, "_seconds") {
 			kind = SecondsCounterSeries
-			name = name[:len(name)-8]
+			//name = name[:len(name)-8]
 		}
 	}
 

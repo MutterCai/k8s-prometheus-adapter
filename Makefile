@@ -7,7 +7,7 @@ ML_PLATFORMS=linux/amd64,linux/arm,linux/arm64,linux/ppc64le,linux/s390x
 OUT_DIR?=./_output
 VENDOR_DOCKERIZED=0
 
-VERSION?=v1.0
+VERSION?=v1.4
 GOIMAGE=golang:1.8
 
 ifeq ($(ARCH),amd64)
@@ -35,7 +35,7 @@ build: vendor
 
 docker-build: vendor
 	cp deploy/Dockerfile $(TEMP_DIR)
-	cd $(TEMP_DIR) && sed -i "s|BASEIMAGE|$(BASEIMAGE)|g" Dockerfile
+	cd $(TEMP_DIR) && sed -i - "s|BASEIMAGE|$(BASEIMAGE)|g" Dockerfile
 
 	docker run -it -v $(TEMP_DIR):/build -v $(shell pwd):/go/src/github.com/directxman12/k8s-prometheus-adapter -e GOARCH=$(ARCH) $(GOIMAGE) /bin/bash -c "\
 		CGO_ENABLED=0 go build -a -tags netgo -o /build/adapter github.com/directxman12/k8s-prometheus-adapter/cmd/adapter"
